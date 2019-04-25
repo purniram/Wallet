@@ -4,6 +4,9 @@ public class SavingsWallet implements Wallet {
     private boolean isOverdrawEnabled;
     private int overDrawLimit;
 
+    // default constructor
+
+
     //constructor for overdraw limit
     public SavingsWallet(int money, int overDrawLimit, boolean isOverdrawEnabled) {
         this.actBalance = money;
@@ -16,6 +19,7 @@ public class SavingsWallet implements Wallet {
         this.overDrawLimit = 0;
         this.isOverdrawEnabled = isOverdrawEnabled;
     }
+
 
     @Override
     public long addMoney(long money) {
