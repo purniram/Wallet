@@ -2,17 +2,18 @@ public class SavingsWallet implements Wallet {
 
     private int actBalance;
     private boolean isOverdrawEnabled;
-    private int overDraw;
+    private int overDrawLimit;
 
-    public SavingsWallet(int money, int overDraw, boolean isOverdrawEnabled) {
+    //constructor for overdraw limit
+    public SavingsWallet(int money, int overDrawLimit, boolean isOverdrawEnabled) {
         this.actBalance = money;
-        this.overDraw = overDraw;
+        this.overDrawLimit = overDrawLimit;
         this.isOverdrawEnabled = isOverdrawEnabled;
     }
 
     public SavingsWallet(int money, boolean isOverdrawEnabled) {
         this.actBalance = money;
-        this.overDraw = 0;
+        this.overDrawLimit = 0;
         this.isOverdrawEnabled = isOverdrawEnabled;
     }
 
@@ -35,6 +36,7 @@ public class SavingsWallet implements Wallet {
         System.out.println("Trying to withdraw " + money + " from the wallet.....");
         int status = -1;
 
+        //if no overdraw facility
         if (!isOverdrawEnabled) {
             if (actBalance >= money) {
                 deductBalance(money);
@@ -48,8 +50,9 @@ public class SavingsWallet implements Wallet {
 
         }
 
+        //if the account has a overdraw facility, the total amount he can withdraw is "accountbalance+overdrawlimit
         else {
-            if ((actBalance + overDraw) >= money) {
+            if ((actBalance + overDrawLimit) >= money) {
                 deductBalance(money);
                 System.out.println("Money withdrawn successfully with withdraw limit");
                 status = 1;
@@ -60,35 +63,19 @@ public class SavingsWallet implements Wallet {
         }
 
             showBalance();
-            return status;
+            return status;  // not used for now. might be needed later
         }
 
-      /*  if (actBalance >= money) {
-            deductBalance(money);
-            return 1;
-        }
-        else if ( (actBalance+overDraw) >= money)
-        {
-            deductBalance(money);
-            return 0;
-        }
-        else {
-            if(isOverdrawEnabled)
-            System.out.println ( "Could not withdraw as the balance plus overdraw " +
-                    "is less than the amount to be withdrawn");
-             else
-                 System.out.println ( "Could not withdraw as the balance is not sufficient");
-            showBalance();
-            return -1;
-        }
-    } */
 
+        //withdrawing money
         private void deductBalance ( long money){
 
             actBalance -= money;
 
         }
 
+
+        //account balance at any given time
         @Override
         public long getBalance () {
             return actBalance;
@@ -98,6 +85,7 @@ public class SavingsWallet implements Wallet {
             this.actBalance = money;
         }
 
+        //printing the balance to console
         public void showBalance ()
         {
             System.out.println("Balance as of now : " + getBalance());
