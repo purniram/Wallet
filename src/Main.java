@@ -2,23 +2,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+        SavingsWallet wallet1 = new SavingsWallet(0, 200, true);
 
-        //System.out.println("Hello World!");
+        wallet1.addMoney(200);
 
-        Wallet wallet1 = new SavingsWallet();
+        int status = wallet1.removeMoney(500);
 
-        wallet1.addMoney(1000);
-        System.out.println ( "AccountBalance: " + wallet1.getBalance());
-
-        int balance = (int) wallet1.removeMoney(500);
-
-        if (balance == 0)
-            System.out.println ("Amount withdrawn with overdue in wallet ");
-
-        if (balance == -1)
-            System.out.println ("Amount cannot be withdrawn even with overdue in wallet ");
-
-        System.out.println("AccountBalance: " + wallet1.getBalance());
+        System.out.println("Final Account Balance: " + wallet1.getBalance());
 
 
     }
