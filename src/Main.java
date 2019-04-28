@@ -20,8 +20,5 @@ public class Main {
         System.out.println ("paytmWallet1 balance: "+paytmWallet1.getBalance());
         System.out.println ("paytmWallet2 balance: "+paytmWallet2.getBalance());
 
-        //new Paytm wallet to check cashback percent
-        OnlineWallet paytmWalletwithCashback = new PaytmWallet(1000, 10);
-
     }
 }
