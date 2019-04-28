@@ -26,12 +26,16 @@ public abstract class OnlineWallet implements Wallet {
         return actBalance;
     }
 
-    public abstract void transferMoney(Wallet source, Wallet dest, int money);
+
 
     private void deductBalance ( long money){
 
         actBalance -= money;
 
     }
+
+    public abstract void transferMoney(Wallet source, Wallet dest, int money);
+
+    public abstract void cashBack(int cashBackPercent);
 
 }
